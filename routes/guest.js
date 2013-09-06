@@ -14,3 +14,14 @@ exports.addToList = function (req, res) {
 	guests.push(guest);
 	return res.send(guest);
 };
+
+exports.removeFromList = function(req,res){
+	var indexToDelete;
+	guests.forEach(function (el, index) {
+		if (el.id == req.params.id) {
+			indexToDelete = index;
+		}
+	});
+	guests.splice(indexToDelete, 1);
+	return res.send({});
+};

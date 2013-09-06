@@ -26,6 +26,7 @@ if ('development' == app.get('env')) {
 
 app.get('/guests', guest.list);
 app.post('/guests', guest.addToList);
+app.delete('/guests/:id',guest.removeFromList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Animal Party server listening on port ' + app.get('port'));
