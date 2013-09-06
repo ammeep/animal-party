@@ -13,4 +13,4 @@ exports.addToList = function (req, res) {
 	var guest = { name: req.body.name, id: nextId++ };
 	guests.push(guest);
 	return res.send(guest);
-});
+};
