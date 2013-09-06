@@ -17,7 +17,19 @@
 		  </div>
 
 		  <!-- Begin page content -->
+		  <div class="container" id="app-container">
+			<!-- Views to be rendered here -->
+		  </div>
+		</div>
+
+		<div id="footer">
 		  <div class="container">
+		    <p class="text-muted credit">Written by<a href="http://amy.palamounta.in"> Amy Palamountain</a>.</p>
+		  </div>
+		</div>
+
+		<!-- The Templates -->
+		<script type="text/template" id="guest-list-template">
 		    <div class="page-header">
 		      	<h1>Who's invited? <small> to the animal party of the year</small></h1>
 				<input class="form-control" placeholder="add a name ...."/>	
@@ -67,20 +79,14 @@
 				  
 				</div>
 				 <button type="button" class="btn btn-primary btn-lg pull-right">Start the party!</button>
-		    </div>
-		  </div>
-		</div>
-
-		<div id="footer">
-		  <div class="container">
-		    <p class="text-muted credit">Written by<a href="http://amy.palamounta.in"> Amy Palamountain</a>.</p>
-		  </div>
-		</div>
+		    </div>	
+		</script>
 
 		<!-- The Scripts, the magic -->
 		<script src="javascripts/lib/jquery.js"></script>
 		<script src="javascripts/lib/underscore.js"></script>
 		<script src="javascripts/lib/backbone.js"></script>
+		<script src="javascripts/app.js"></script>
 
 	</body>
 </html>
