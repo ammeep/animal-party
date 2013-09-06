@@ -2,26 +2,18 @@ var Party = Party || {};
 	
 (function (){
 	
-	var Guest = Backbone.Model.extend({});
-	
-	var GuestList = Backbone.Collection.extend({
-		model: Guest,
-
-		url: "guests"
-	});
-	
 	var AnimalPartyRouter = Backbone.Router.extend({
 		routes: {
 			'': 'showGuestList',
 			'start-the-party': 'startTheParty'
 		},
 		showGuestList: function () {
-			var guestList = new GuestList();
+			var guestList = new Party.GuestList();
 			new Party.GuestListView({collection : guestList});
 			guestList.fetch();
 		},
 		startTheParty: function () {
-			var collection = new GuestList();
+			var collection = new Party.GuestList();
 			new Party.PartyView({collection:collection});
 			collection.fetch();
 		}
