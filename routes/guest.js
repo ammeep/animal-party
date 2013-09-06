@@ -9,13 +9,13 @@ exports.list = function(req, res){
   return res.send(guests);
 };
 
-exports.addToList = function (req, res) {
+exports.addGuest = function (req, res) {
 	var guest = { name: req.body.name, rsvp: req.body.rsvp, id: nextId++ };
 	guests.push(guest);
 	return res.send(guest);
 };
 
-exports.removeFromList = function(req,res){
+exports.removeGuest = function(req,res){
 	var indexToDelete;
 	guests.forEach(function (el, index) {
 		if (el.id == req.params.id) {
@@ -26,7 +26,7 @@ exports.removeFromList = function(req,res){
 	return res.send({});
 };
 
-exports.update = function(req,res){
+exports.updateGuest = function(req,res){
 	var indexToReplace;
 	guests.forEach(function (el, index) {
 		if (el.id == req.params.id) {
@@ -36,6 +36,6 @@ exports.update = function(req,res){
 
 	guests[indexToReplace].name = req.body.name;
 	guests[indexToReplace].rsvp = req.body.rsvp;
-	
+
 	return res.send({});
 };
