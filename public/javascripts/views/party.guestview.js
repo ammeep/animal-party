@@ -48,13 +48,20 @@ var Party = Party || {};
 		},
 		initialize: function () {
 			this.listenTo(this.collection, 'add', this.addOne, this);
+			this.listenTo(this.collection, 'change', this.renderSubview, this);
 			this.render();
 			this.addAll();
 		},		
 
 		render: function () {
 			this.$el.html(this.template());
+			this.renderSubview()
 			return this;
+		},
+
+		renderSubview: function(){
+			var rsvpView = new Party.RsvpsView({collection:this.collection});
+			rsvpView.render();
 		},
 
 		addOne: function (guest) {

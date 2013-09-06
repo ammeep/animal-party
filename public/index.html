@@ -31,18 +31,26 @@
 		<!-- The Templates -->
 		<script type="text/template" id="guest-list-template">
 		    <div class="page-header">
-		      	<h1>Who's invited? <small> to the animal party of the year</small></h1>
+		      	<h1>Who is invited? <small> to the animal party of the year</small></h1>
 				<input class="form-control" id="guest-text-box" placeholder="add a name ...."/>	
 		    </div>
 
 		    <div class="page-content">
+		    	<div id="rspv-counter"></div>
 				<div class="list-group" id="guest-list">
 
 				</div>
 				 <button id="party-starter" type="button" class="btn btn-primary btn-lg pull-right">Start the party!</button>
 		    </div>	
 		</script>
-
+		
+		<script type="text/template" id="rsvp-template">
+			<span id="rsvp-count">
+				<strong><%= confirmed %></strong> 
+				<%= confirmed === 1 ? 'guest' : 'guests' %> confirmed.
+			</span>
+		</script>
+		
 		<script type="text/template" id="guest-item-template">
 		  	<div class="row">
 			  <div class="col-md-8">
@@ -83,6 +91,7 @@
 		<script src="javascripts/models/party.guestlist.js"></script>
 		<script src="javascripts/views/party.partyview.js"></script>
 		<script src="javascripts/views/party.guestview.js"></script>
+		<script src="javascripts/views/party.rsvpsview.js"></script>
 		<script src="javascripts/routers/party.router.js"></script>
 		<script src="javascripts/app.js"></script>
 
