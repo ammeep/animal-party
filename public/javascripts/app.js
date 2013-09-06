@@ -8,22 +8,39 @@
 	
 	var GuestList = Backbone.Collection.extend({
 		model: Guest,
+
 		url: "guests"
 	});
 	
 	var GuestView = Backbone.View.extend({
+
 		template: _.template($('#guest-item-template').html()),
+
 		tagName: 'a',
+
 		className: 'list-group-item',
+
+		events: {
+			'click .uninvite': 'delete'
+		},
+
+		initialize: function () {
+			this.listenTo(this.model, 'destroy', this.remove);
+		},
 
 		render: function () {
 			this.$el.html(this.template(this.model.toJSON()));
 			return this;
+		},
+
+		delete: function(){
+			this.model.destroy();
 		}
 	});
 	
 	var GuestListView = Backbone.View.extend({
 		el: '#app-container',
+
 		template: _.template($('#guest-list-template').html()),
 
 		events: {
