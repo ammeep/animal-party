@@ -8,7 +8,7 @@
 	
 	var GuestList = Backbone.Collection.extend({
 		model: Guest,
-		url: "animals"
+		url: "guests"
 	});
 	
 	var GuestView = Backbone.View.extend({
@@ -61,5 +61,6 @@
 
 	var guestList = new GuestList();
 	new GuestListView({collection : guestList});
+	guestList.fetch();
 	
 }());

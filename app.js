@@ -4,8 +4,7 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
+var guest = require('./routes/guest');
 var http = require('http');
 var path = require('path');
 
@@ -25,7 +24,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/users', user.list);
+app.get('/guests', guest.list);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Animal Party server listening on port ' + app.get('port'));

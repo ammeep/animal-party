@@ -1,6 +1,6 @@
 
 /*
- * GET users listing.
+ * GET Guest listing.
  */
 
 exports.list = function(req, res){
