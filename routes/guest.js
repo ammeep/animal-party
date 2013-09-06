@@ -1,8 +1,9 @@
 
 /*
- * GET Guest listing.
+ * GET users listing.
  */
+var guests = [];
 
 exports.list = function(req, res){
-  res.send("respond with a resource");
+  return res.send(guests);
 };
