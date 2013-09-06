@@ -76,8 +76,31 @@
 		}
 	});
 
-	var guestList = new GuestList();
-	new GuestListView({collection : guestList});
-	guestList.fetch();
+
+
+	var AnimalPartyRouter = Backbone.Router.extend({
+		routes: {
+			'': 'showGuestList',
+			'start-the-party': 'startTheParty'
+		},
+		showGuestList: function () {
+			var guestList = new GuestList();
+			new GuestListView({collection : guestList});
+			guestList.fetch();
+		},
+		startTheParty: function () {
+			var collection = new GuestList();
+			new GuestListView({collection:collection});
+			collection.fetch();
+		}
+	});
+
+	var router = new AnimalPartyRouter();
+	
+	Backbone.history.start({pushState: true});
+	
+	$('#party-starter').on('click', function () {
+		router.navigate('start-the-party', true);
+	});
 	
 }());
