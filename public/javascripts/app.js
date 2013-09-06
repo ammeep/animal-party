@@ -25,23 +25,37 @@
 	var GuestListView = Backbone.View.extend({
 		el: '#app-container',
 		template: _.template($('#guest-list-template').html()),
-		
+
+		events: {
+			'keypress #guest-text-box': 'createOnEnter'
+		},
 		initialize: function () {
 			this.listenTo(this.collection, 'add', this.addOne, this);
 			this.render();
 			this.addAll();
 		},		
+
 		render: function () {
 			this.$el.html(this.template());
 			return this;
 		},
+
 		addOne: function (guest) {
 			var view = new GuestView({ model: guest });
 			this.$('#guest-list').append(view.render().el);
 		},
+
 		addAll: function () {
 			this.$('#guest-list').html('');
 			this.collection.each(this.addOne, this);
+		},
+
+		createOnEnter: function (e) {
+			if (e.which !== ENTER_KEY || !this.$('#guest-text-box').val().trim()) {
+				return;
+			}
+			this.collection.create({ name: this.$('#guest-text-box').val() });
+			this.$('#guest-text-box').val('');
 		}
 	});
 
