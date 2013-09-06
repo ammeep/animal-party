@@ -1,9 +1,9 @@
+var Party = Party || {};
+	
 (function (){
 	
 	var ENTER_KEY = 13;
-	
-	var app = app || {};
-	
+
 	var Guest = Backbone.Model.extend({});
 	
 	var GuestList = Backbone.Collection.extend({
@@ -76,51 +76,6 @@
 		}
 	});
 
-	var PartyAnimalView = Backbone.View.extend({
-		template: _.template($('#party-animal-template').html()),
-		tagName: 'li',
-		events: {
-			'click': 'removeAnimal'
-		},
-		initialize: function () {
-			this.listenTo(this.model, 'destroy', this.remove);
-		},
-		removeAnimal: function () {
-			this.model.destroy();
-		},
-		render: function () {
-			this.$el.html(this.template(this.model.toJSON()));
-			return this;
-		},
-		jiggle: function () {
-			$(this.el).addClass('jiggly');
-		}
-	});
-	
-	var PartyView = Backbone.View.extend({
-		el: '#app-container',
-		template: _.template($('#party-template').html()),
-		
-		initialize: function () {
-			this.listenTo(this.collection, 'add', this.addOne, this);
-			this.render();
-		},		
-		render: function () {
-			this.$el.html(this.template());
-			return this;
-		},
-		addOne: function (animalInvite) {
-			var view = new PartyAnimalView({ model: animalInvite });
-			this.$('#party-animals').append(view.render().el);
-			view.jiggle();
-		},
-		addAll: function () {
-			this.$('#party-animals').html('');
-			this.collection.each(this.addOne, this);
-		},
-	});
-	
-
 	var AnimalPartyRouter = Backbone.Router.extend({
 		routes: {
 			'': 'showGuestList',
@@ -133,7 +88,7 @@
 		},
 		startTheParty: function () {
 			var collection = new GuestList();
-			new PartyView({collection:collection});
+			new Party.PartyView({collection:collection});
 			collection.fetch();
 		}
 	});
