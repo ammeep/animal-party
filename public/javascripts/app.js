@@ -60,7 +60,6 @@
 	});
 
 	var guestList = new GuestList();
-	guestList.add(new Guest());
 	new GuestListView({collection : guestList});
 	
 }());
