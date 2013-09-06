@@ -7,7 +7,17 @@ var Party = Party || {};
 	Party.GuestList = Backbone.Collection.extend({
 		model: Party.Guest,
 
-		url: "guests"
+		url: "guests",
+
+		confirmed: function () {
+			return this.filter(function (guest) {
+				return guest.get('rsvp');
+			});
+		},
+
+		declined: function () {
+			return this.without.apply(this, this.confirmed());
+		}
 	});
 
 }(Backbone));

@@ -26,6 +26,7 @@ if ('development' == app.get('env')) {
 
 app.get('/guests', guest.list);
 app.post('/guests', guest.addToList);
+app.put('/guests/:id',guest.update);
 app.delete('/guests/:id',guest.removeFromList);
 
 http.createServer(app).listen(app.get('port'), function(){

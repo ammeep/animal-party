@@ -16,7 +16,8 @@ var Party = Party || {};
 		className: 'list-group-item',
 
 		events: {
-			'click .uninvite': 'delete'
+			'click .uninvite': 'delete',
+			'click .rsvp-checkbox' : 'toggelRsvp'
 		},
 
 		initialize: function () {
@@ -30,6 +31,10 @@ var Party = Party || {};
 
 		delete: function(){
 			this.model.destroy();
+		},
+
+		toggelRsvp: function(){
+			this.model.toggleRsvp();
 		}
 	});
 	
