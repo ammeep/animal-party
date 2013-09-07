@@ -1,37 +1,3 @@
-@font-face {
-  font-family: 'Amatic SC';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Amatic SC Regular'), local('AmaticSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/amaticsc/v3/DPPfSFKxRTXvae2bKDzp5D8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
-@font-face {
-  font-family: 'Amatic SC';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Amatic SC Bold'), local('AmaticSC-Bold'), url(http://themes.googleusercontent.com/static/fonts/amaticsc/v3/IDnkRTPGcrSVo50UyYNK73hCUOGz7vYGh680lGh-uXM.woff) format('woff');
-}
-
-
-/* Reset ======================================================= */    
-    
-     * { margin:0; padding:0; box-sizing:border-box; }
-    header, footer, section, figure, figcaption { display:block; }
-        
-    body {
-        font:300 100%/1.5 'Amatic SC', cursive;
-        color:#494636;
-        background:#F8EEB9;
-        overflow-y:scroll;
-        overflow-x:hidden;
-    }
-    
-    section { width:290px; margin:0 auto; }
-    
-    a { cursor:pointer; text-decoration:none; }
-    
-    .paused * { animation-play-state:paused; opacity:.5; pointer-events:none; transition:opacity .4s; }
-    
-
 /* Party Animal */
 .animal {
         width:200px;
