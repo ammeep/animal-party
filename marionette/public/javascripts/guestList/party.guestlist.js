@@ -1,11 +1,39 @@
-Party.App.module("GuestList", function(GuestList, App){
+Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _){
   "use strict";
   this.startWithParent = false;
 
-  var ENTER_KEY,GuestListView, GuestView, Controller;
+  var ENTER_KEY,GuestListView, GuestView, Guest, Guests, Controller;
 
   ENTER_KEY = 13;
-  
+
+  Guest = Backbone.Model.extend({
+    
+    defaults: {
+      name: '',
+      rsvp: false
+    },
+
+    toggleRsvp: function () {
+      this.save({rsvp: !this.get('rsvp')});
+    }
+  });
+
+  Guests = Backbone.Collection.extend({ 
+    model: Guest,
+
+    url: "guests",
+
+    confirmed: function () {
+      return this.filter(function (guest) {
+        return guest.get('rsvp');
+      });
+    },
+
+    declined: function () {
+      return this.without.apply(this, this.confirmed());
+    }
+  });
+
   GuestView = Marionette.ItemView.extend({
 
     tagName: 'a',
@@ -72,7 +100,7 @@ Party.App.module("GuestList", function(GuestList, App){
 
     show: function(){
       var collection, view;
-      collection = new Party.GuestList();
+      collection = new Guests();
       view = new GuestListView({collection : collection});
       this.region.show(view);
       collection.fetch();
