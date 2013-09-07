@@ -1,41 +1,38 @@
-
+var Repository = require('./repository').Repository;
+var repository = new Repository();
 /*
- * GET users listing.
+ * GET guests listing.
  */
-var guests = [];
-var nextId = 1;
 
 exports.list = function(req, res){
-  return res.send(guests);
+	repository.allGuests(function(errors,guests){
+		res.send(guests)
+	});
 };
 
 exports.addGuest = function (req, res) {
-	var guest = { name: req.body.name, rsvp: req.body.rsvp, id: nextId++ };
-	guests.push(guest);
-	return res.send(guest);
+	var guest = { name: req.body.name, rsvp: req.body.rsvp};
+	repository.addGuest(guest,function(errors,guest){
+		res.send(guest)
+	});
 };
 
 exports.removeGuest = function(req,res){
-	var indexToDelete;
-	guests.forEach(function (el, index) {
-		if (el.id == req.params.id) {
-			indexToDelete = index;
-		}
+	repository.removeGuest(req.id,function(errors){
+		res.send()
 	});
-	guests.splice(indexToDelete, 1);
-	return res.send({});
 };
 
 exports.updateGuest = function(req,res){
-	var indexToReplace;
-	guests.forEach(function (el, index) {
-		if (el.id == req.params.id) {
-			indexToReplace = index;
-		}
+	var guest = { id:req.params.id,name: req.body.name, rsvp: req.body.rsvp};
+	repository.updateGuest(guest,function(errors,guest){
+		res.send(guest)
 	});
+};
 
-	guests[indexToReplace].name = req.body.name;
-	guests[indexToReplace].rsvp = req.body.rsvp;
-
-	return res.send({});
+exports.listPartyAnimals = function(req,res){
+	repository.find({rsvp:true},function(error, guests){
+		console.log(guests);
+		res.send(guests);
+	});
 };

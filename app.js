@@ -29,6 +29,8 @@ app.post('/guests', guest.addGuest);
 app.put('/guests/:id',guest.updateGuest);
 app.delete('/guests/:id',guest.removeGuest);
 
+app.get('/party', guest.listPartyAnimals);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Animal Party server listening on port ' + app.get('port'));
 });

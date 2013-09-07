@@ -15,7 +15,7 @@ var Party = Party || {};
 			guestList.fetch();
 		},
 		startTheParty: function () {
-			var collection = new Party.GuestList();
+			var collection = new Party.PartyAnimals();
 			new Party.PartyView({collection:collection});
 			collection.fetch();
 		}
