@@ -11,7 +11,7 @@ var Party = Party || {};
 		template: _.template($('#rsvp-template').html()),
 
 		initialize: function () {
-		//	this.listenTo(this.collection, 'change:rsvp', this.render);
+			this.listenTo(this.collection, 'add', this.render);
 		},
 
 		render: function () {
