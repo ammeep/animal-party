@@ -31,8 +31,7 @@ exports.updateGuest = function(req,res){
 };
 
 exports.listPartyAnimals = function(req,res){
-	repository.find({rsvp:true},function(error, guests){
-		console.log(guests);
+	repository.findPartyGoers(function(error, guests){
 		res.send(guests);
 	});
 };

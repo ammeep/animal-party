@@ -38,9 +38,14 @@ Repository.prototype.updateGuest = function(guest, callback) {
   callback(null, guests[indexToReplace]);
 };
 
-Repository.prototype.find = function(attr, callback){
-  var found = _.where(guests,{rsvp:true});
-  callback(null, found);
+Repository.prototype.findPartyGoers = function(callback){
+  var attendingGuests = _.where(guests,{rsvp:true});
+  var partyAnimals = _.map(attendingGuests,function(item){
+     var randomImageNumber = _.random(0, 11);
+     var randomImage = '/images/partyanimals/'+ randomImageNumber + '.jpeg';
+     return _.extend(item, {photo : randomImage});
+  });
+  callback(null, partyAnimals);
 };
 
 exports.Repository = Repository;
