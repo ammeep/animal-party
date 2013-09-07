@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Backbone - Animal Party</title>
+		<link rel="stylesheet" href="stylesheets/bootstrap.css">
+		<link rel="stylesheet" href="stylesheets/partyanimals.css">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Kavoon">
+	</head>
+	<body>		
+		 <!-- Begin page content -->
+		<div class="container">
+			<div class="row navbar-header">
+				<h1>
+					<a class="navbar-brand" href="#">Backbone - Animal Party!</a>
+				</h1>
+			</div>
+			<div id="app-container" class="container">
+				<!-- Views to be rendered here -->
+			</div>
+
+			<div id="footer">
+			  <div class="container">
+			    <p class="text-muted credit">Written by<a href="http://amy.palamounta.in"> Amy Palamountain</a>.</p>
+			  </div>  
+			</div>
+		</div>
+
+
+		<!-- The Templates -->
+		<script type="text/template" id="guest-list-template">
+		    <div class="page-header">
+		      	<h1>Who is invited? <small> to the animal party of the year</small></h1>
+				<input class="form-control" id="guest-text-box" placeholder="add a name ...."/>	
+		    </div>
+
+		    <div class="page-content">
+		    	<div id="rspv-counter"></div>
+				<div class="list-group" id="guest-list">
+
+				</div>
+				 <button id="party-starter" type="button" class="btn btn-primary btn-lg pull-right">Start the party!</button>
+		    </div>	
+		</script>
+		
+		<script type="text/template" id="rsvp-template">
+			<span id="rsvp-count">
+				<strong><%= confirmed %></strong> 
+				<%= confirmed === 1 ? 'guest' : 'guests' %> confirmed.
+			</span>
+		</script>
+		
+		<script type="text/template" id="guest-item-template">
+		  	<div class="row guest">
+			  <div class="col-md-4 details">
+		    	<label>Name:</label>
+		    	<span> <%= name %></span>
+			  </div>
+			  <div class="col-md-4 details">
+			    <label> RSVP Attending: </label>
+			    <input class="rsvp-checkbox" type="checkbox" <%= rsvp ? 'checked' : '' %>>   
+			  </div>
+			  <div class="col-md-4">				  	
+		    	<button type="button" class="uninvite btn btn-danger pull-right">
+		    		Uninvite
+		    	</button>
+			  </div>
+			</div>
+		</script>
+
+		<script type="text/template" id="party-animal-template">	    
+		    <div class="animal">
+		      <div>
+			      <img src="<%= photo %>" class="img-circle animal-photo">
+		      </div>
+		    </div>
+		    <div class="shadow"></div>
+		    <h3 class="figcaption"><%= name %></h3>
+		</script>
+
+		<script type="text/template" id="party-template">
+			<header id="header">
+				<h2>Shall we party?</h2>
+			</header>
+			<div id="party-animals" class="row" >
+			</div>	
+		</script>
+		<!-- The Scripts, the magic -->
+	 
+		<script src="javascripts/lib/jquery.js"></script>
+		<script src="javascripts/lib/underscore.js"></script>
+		<script src="javascripts/lib/backbone.js"></script>
+		<script src="javascripts/models/party.guest.js"></script>
+		<script src="javascripts/models/party.guestlist.js"></script>
+		<script src="javascripts/models/party.animal.js"></script>
+		<script src="javascripts/models/party.animals.js"></script>
+		<script src="javascripts/views/party.partyview.js"></script>
+		<script src="javascripts/views/party.guestview.js"></script>
+		<script src="javascripts/views/party.rsvpsview.js"></script>
+		<script src="javascripts/routers/party.router.js"></script>
+		<script src="javascripts/app.js"></script>
+
+	</body>
+</html>
