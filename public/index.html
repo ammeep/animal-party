@@ -50,15 +50,15 @@
 		</script>
 		
 		<script type="text/template" id="guest-item-template">
-		  	<div class="row">
-			  <div class="col-md-8">
-		    	<h4><%= name %></h4>
-		    	<div class="checkbox">
-			    <label>
-			      <input class="rsvp-checkbox" type="checkbox" <%= rsvp ? 'checked' : '' %>> Attending
-			    </label>
+		  	<div class="row guest">
+			  <div class="col-md-4 details">
+		    	<label>Name:</label>
+		    	<span> <%= name %></span>
 			  </div>
-		      </div>
+			  <div class="col-md-4 details">
+			    <label> RSVP Attending: </label>
+			    <input class="rsvp-checkbox" type="checkbox" <%= rsvp ? 'checked' : '' %>>   
+			  </div>
 			  <div class="col-md-4">				  	
 		    	<button type="button" class="uninvite btn btn-danger pull-right">
 		    		Uninvite

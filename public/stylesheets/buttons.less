@@ -66,7 +66,33 @@
 }
 // Danger and error appear as red
 .btn-danger {
-  .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+  color: @btn-danger-color;
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    color: @btn-danger-color;
+    background-color: darken(@btn-danger-bg, 8%);
+        border-color: darken(@btn-danger-border, 12%);
+  }
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: @btn-danger-bg;
+          border-color:  @btn-danger-border
+    }
+  }
 }
 // Success appears as green
 .btn-success {

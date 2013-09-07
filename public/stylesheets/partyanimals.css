@@ -35,4 +35,11 @@ li:active .shadow { background:rgba(0,0,0,.08); width:70%; }
 .figcaption{
     text-align: center;
 }  
+
+.guest .details{
+    font-family: "Kavoon", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    font-size: 18px;
+}
     
