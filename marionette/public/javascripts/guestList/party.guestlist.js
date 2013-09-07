@@ -46,7 +46,7 @@ Party.App.module("GuestList", function(GuestList, App){
       guestTextBox: '#guest-text-box'
     },
 
-    onRender:function(){
+    onShow:function(){
       var rsvpView = new Party.RsvpsView({collection:this.collection});
       rsvpView.render();
     },
