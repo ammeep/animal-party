@@ -10,9 +10,7 @@ var Party = Party || {};
 			'start-the-party': 'startTheParty'
 		},
 		showGuestList: function () {
-			var guestList = new Party.GuestList();
-			new Party.GuestListView({collection : guestList});
-			guestList.fetch();
+			//Party.startSubApp('GuestList',{region:Party.App.main});
 		},
 		startTheParty: function () {
 			var collection = new Party.PartyAnimals();
