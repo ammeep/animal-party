@@ -17,7 +17,8 @@ var Party = Party || {};
 
 		events: {
 			'click .uninvite': 'delete',
-			'click .rsvp-checkbox' : 'toggelRsvp'
+			'click .rsvp-checkbox' : 'toggelRsvp',
+			'click #party-starter' : 'startTheParty'
 		},
 
 		initialize: function () {
@@ -35,6 +36,10 @@ var Party = Party || {};
 
 		toggelRsvp: function(){
 			this.model.toggleRsvp();
+		},
+
+		startTheParty: function(){
+			Part.router.navigate('start-the-party', true);
 		}
 	});
 	
