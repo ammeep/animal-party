@@ -17,8 +17,7 @@ var Party = Party || {};
 
 		events: {
 			'click .uninvite': 'delete',
-			'click .rsvp-checkbox' : 'toggelRsvp',
-			'click #party-starter' : 'startTheParty'
+			'click .rsvp-checkbox' : 'toggelRsvp'
 		},
 
 		initialize: function () {
@@ -36,10 +35,6 @@ var Party = Party || {};
 
 		toggelRsvp: function(){
 			this.model.toggleRsvp();
-		},
-
-		startTheParty: function(){
-			Part.router.navigate('start-the-party', true);
 		}
 	});
 	
@@ -49,7 +44,8 @@ var Party = Party || {};
 		template: _.template($('#guest-list-template').html()),
 
 		events: {
-			'keypress #guest-text-box': 'createOnEnter'
+			'keypress #guest-text-box': 'createOnEnter',
+			'click #party-starter' : 'startTheParty'
 		},
 		initialize: function () {
 			this.listenTo(this.collection, 'add', this.addOne, this);
@@ -60,7 +56,7 @@ var Party = Party || {};
 
 		render: function () {
 			this.$el.html(this.template());
-			this.renderSubview()
+			this.renderSubview();
 			return this;
 		},
 
@@ -85,6 +81,10 @@ var Party = Party || {};
 			}
 			this.collection.create({ name: this.$('#guest-text-box').val() });
 			this.$('#guest-text-box').val('');
+		},
+
+		startTheParty: function(){
+			Party.router.navigate('start-the-party', true);
 		}
 	});
 
