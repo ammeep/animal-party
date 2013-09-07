@@ -24,6 +24,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/start-the-party',function(req,res){
+	var uid = req.params.uid,
+    path = req.params[0] ? req.params[0] : 'index.html';
+    res.sendfile(path, {root: './public'});
+});
+
 app.get('/guests', guest.list);
 app.post('/guests', guest.addGuest);
 app.put('/guests/:id',guest.updateGuest);
