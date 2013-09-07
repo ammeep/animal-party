@@ -41,7 +41,7 @@ Repository.prototype.updateGuest = function(guest, callback) {
 Repository.prototype.findPartyGoers = function(callback){
   var attendingGuests = _.where(guests,{rsvp:true});
   var partyAnimals = _.map(attendingGuests,function(item){
-     var randomImageNumber = _.random(0, 11);
+     var randomImageNumber = _.random(1, 10);
      var randomImage = '/images/partyanimals/'+ randomImageNumber + '.jpeg';
      return _.extend(item, {photo : randomImage});
   });
