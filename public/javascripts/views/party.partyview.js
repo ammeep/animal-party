@@ -5,7 +5,8 @@ var Party = Party || {};
 	'use strict';
 
 	var PartyAnimalView = Backbone.View.extend({
-		tagName: 'li',
+		tagName: 'div',
+		className: 'col-sm-6 col-md-3',
 		template: _.template($('#party-animal-template').html()),
 
 		events: {

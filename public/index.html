@@ -70,18 +70,16 @@
 		</script>
 
 		<script type="text/template" id="party-animal-template">
-			<div class="view">
-				<label><%= name %></label>
-				<img src="<%= photo %>" />
-			</div>
+		    <a href="#" class="thumbnail">
+		     <img src="<%= photo %>" alt="<%= name >"/>
+		    </a>
 		</script>
 
 		<script type="text/template" id="party-template">
 			<header id="header">
 				<h1>Animal Party!</h1>
 			</header>
-			<section id="main">
-				<ul id="party-animals"></ul>
+			<section id="party-animals" class="row">
 			</section>		
 		</script>
 		<!-- The Scripts, the magic -->
