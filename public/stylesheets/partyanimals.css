@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Amatic SC Regular'), local('AmaticSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/amaticsc/v3/DPPfSFKxRTXvae2bKDzp5D8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Amatic SC Bold'), local('AmaticSC-Bold'), url(http://themes.googleusercontent.com/static/fonts/amaticsc/v3/IDnkRTPGcrSVo50UyYNK73hCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+
+
+/* Reset ======================================================= */    
+    
+     * { margin:0; padding:0; box-sizing:border-box; }
+    header, footer, section, figure, figcaption { display:block; }
+        
+    body {
+        font:300 100%/1.5 'Amatic SC', cursive;
+        color:#494636;
+        background:#F8EEB9;
+        overflow-y:scroll;
+        overflow-x:hidden;
+    }
+    
+    section { width:290px; margin:0 auto; }
+    
+    a { cursor:pointer; text-decoration:none; }
+    
+    .paused * { animation-play-state:paused; opacity:.5; pointer-events:none; transition:opacity .4s; }
+    
+
+/* Party Animal */
+.animal {
+        width:200px;
+        height:200px;       
+        -webkit-animation:bobble 5s ease-in-out infinite;
+        -webkit-transform-origin:center bottom;
+        -webkit-transition:padding .3s, bottom .3s;
+        text-align:center;
+}
+.animal-photo{
+    width:200px;
+    height:200px;     
+}
+  
+@keyframes bobble { 33%{ -webkit-transform:rotate(5deg); } 66%{ -webkit-transform:rotate(-5deg); } }
+@-webkit-keyframes bobble { 33%{ -webkit-transform:rotate(5deg); } 66%{ -webkit-transform:rotate(-5deg); } }
+div:nth-child(5n+1) .animal { -webkit-animation-delay:-3s; }
+div:nth-child(5n+1) .animal { -webkit-animation-delay:-3s; }
+div:nth-child(5n+2) .animal { -webkit-animation-delay:-1s; }
+div:nth-child(5n+3) .animal { -webkit-animation-delay:-4s; }
+div:nth-child(5n+4) .animal { -webkit-animation-delay:-.2.5s; }   
+
+li:hover .animal{ padding:30px 40px; }
+
+.shadow {
+    height:20px;
+    background:rgba(0,0,0,.1);
+    width:60%;
+    border-radius:100%;
+    margin:-15px 0 0 30%;
+    transition:.3s;
+}
+li:hover .shadow { background:rgba(0,0,0,.05); } 
+li:active .shadow { background:rgba(0,0,0,.08); width:70%; }
+.figcaption{
+    text-align: center;
+}  
+    

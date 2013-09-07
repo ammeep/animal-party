@@ -2,8 +2,9 @@
 <html>
 	<head>
 		<title>Backbone - Animal Party</title>
-		<link rel="stylesheet" href="stylesheets/bootstrap.css"/>
+		<link rel="stylesheet" href="stylesheets/bootstrap.css">
 		<link rel="stylesheet" href="stylesheets/sticky-footer-navbar.css">
+		<link rel="stylesheet" href="stylesheets/partyanimals.css">
 	</head>
 	<body>		
 		<div id="wrap">
@@ -69,20 +70,25 @@
 			</div>
 		</script>
 
-		<script type="text/template" id="party-animal-template">
-		    <a href="#" class="thumbnail">
-		     <img src="<%= photo %>" alt="<%= name >"/>
-		    </a>
+		<script type="text/template" id="party-animal-template">	    
+		    <div class="animal">
+		      <div>
+			      <img src="<%= photo %>" class="img-circle animal-photo">
+		      </div>
+		    </div>
+		    <div class="shadow"></div>
+		    <h3 class="figcaption"><%= name %></h3>
 		</script>
 
 		<script type="text/template" id="party-template">
 			<header id="header">
 				<h1>Animal Party!</h1>
 			</header>
-			<section id="party-animals" class="row">
-			</section>		
+			<div id="party-animals" class="row" >
+			</div>	
 		</script>
 		<!-- The Scripts, the magic -->
+	 
 		<script src="javascripts/lib/jquery.js"></script>
 		<script src="javascripts/lib/underscore.js"></script>
 		<script src="javascripts/lib/backbone.js"></script>
