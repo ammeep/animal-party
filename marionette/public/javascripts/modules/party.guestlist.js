@@ -112,7 +112,6 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
   };
 
   GuestList.on("before:start", function(options){
-    console.log(options);
     GuestList.controller = new Controller(options);
     Party.App.vent.trigger("app:started", "guestList");
   });
