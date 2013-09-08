@@ -1,8 +1,9 @@
 Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionette, $, _){
+  
   "use strict";
   this.startWithParent = false;
 
-  var Controller, PartyView, AnimalView, Animal, Party;
+  var Controller, PartyView, AnimalView, EmptyView, Animal, Party;
 
   Animal = Backbone.Model.extend({ });
 
@@ -26,12 +27,16 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
     removeAnimal: function () {
       this.model.destroy();
     }
-
   });
   
+  EmptyView = Marionette.ItemView.extend({
+    template:'#empty-party-view'
+  });
+
   PartyView = Marionette.CollectionView.extend({
     itemView: AnimalView,
-    template: '#party-template'
+    template: '#party-template',
+    emptyView: EmptyView
   });
 
   Controller = Marionette.Controller.extend({
