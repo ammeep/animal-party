@@ -1,4 +1,5 @@
 /*global Backbone */
+var Party = Party || {};
 Party.Router = (function(App, Backbone){
   "use strict";
 
