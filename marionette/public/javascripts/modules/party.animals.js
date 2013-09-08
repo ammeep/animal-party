@@ -1,4 +1,4 @@
-Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionette, $, _){
+PartyApp.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionette, $, _){
   
   "use strict";
   this.startWithParent = false;

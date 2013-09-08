@@ -1,4 +1,4 @@
-Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _){
+PartyApp.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _){
   "use strict";
   this.startWithParent = false;
 
@@ -107,8 +107,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     },
 
     startTheParty: function(){
-      //App.commands.execute('start-the-party');
-      Party.App.Router.navigate('start-the-party', true);
+      PartyApp.Router.navigate('start-the-party', true);
     }
   });
 

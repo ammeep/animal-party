@@ -1,16 +1,14 @@
-var Party = Party || {};
-
-Party.App = (function(Backbone, Marionette){
+PartyApp = (function(Backbone, Marionette){
   "use strict";
 
   var App = new Marionette.Application();
 
   App.addRegions({
-    main: "#app-container" //previously this was owned by each othe views.
+    main: "#app-container" 
   });
 
   App.on("initialize:after", function(){
-  	App.Router = new Party.Router();
+  	App.Router = new PartyApp.Router();
     if (Backbone.history){
       Backbone.history.start({pushState: true});
     }	

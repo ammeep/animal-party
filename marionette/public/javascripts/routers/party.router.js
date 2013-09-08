@@ -1,6 +1,5 @@
 /*global Backbone */
-var Party = Party || {};
-Party.Router = (function(App, Backbone){
+PartyApp.Router = (function(App, Backbone){
   "use strict";
 
     var Router = Backbone.Router.extend({
@@ -11,13 +10,13 @@ Party.Router = (function(App, Backbone){
 		},
 
 		showGuestList: function () {
-			Party.App.showApp('GuestList',{region:Party.App.main});
+			PartyApp.showApp('GuestList',{region:PartyApp.main});
 		},
 		startTheParty: function () {
-			Party.App.showApp('PartyAnimals',{region:Party.App.main});
+			PartyApp.showApp('PartyAnimals',{region:PartyApp.main});
 		}
 
     });
   return Router;
 
-})(Party.App, Backbone); 
+})(PartyApp, Backbone); 
