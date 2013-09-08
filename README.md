@@ -1,5 +1,7 @@
-Animal Party
+Animal Party - An Unsuck your Backbone Demo
 ============
+
+![alt tag](http://amy.palamounta.in/images/featured/unsuckyourbackbone.jpg)
 
 These are the facts: 
  - Animals like to party.
@@ -9,4 +11,4 @@ So to help the party animals, and provide some guidance for scaling JavaScript a
 
 
 An example app built with backbone.js and then with marionette.js 
-![alt tag](http://amy.palamounta.in/images/featured/unsuckyourbackbone.jpg)
+
