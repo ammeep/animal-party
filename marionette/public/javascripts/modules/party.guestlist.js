@@ -2,7 +2,8 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
   "use strict";
   this.startWithParent = false;
 
-  var ENTER_KEY,GuestListView, GuestView, Guest, Guests, Controller;
+  var ENTER_KEY, Layout, RsvpsView, GuestsView, GuestView;
+  var Guest, Guests, Controller;
 
   ENTER_KEY = 13;
 
@@ -60,10 +61,34 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     }
   });
   
-  GuestListView = Marionette.CompositeView.extend({
-    itemView: GuestView,
+  GuestsView = Marionette.CollectionView.extend({
+    itemView: GuestView
+  });
+
+  RsvpsView = Marionette.ItemView.extend({
+
+    template:'#rsvp-template',
+
+    initialize: function(){
+      this.collection.on('add',this.render,this);
+      this.collection.on('change',this.render,this);
+    },
+    serializeData: function(){
+      var confirmed = this.collection.confirmed().length;
+      var declined = this.collection.declined().length;
+      return {confirmed:confirmed,declined:declined};
+    }
+
+  });
+
+  Layout = Marionette.Layout.extend({
+
     template: '#guest-list-template',
-    itemViewContainer: '#guest-list',
+
+    regions:{
+      guestList: '#guest-list',
+      rsvpStats: '#rspv-counter'
+    },
 
     events: {
       'keypress #guest-text-box': 'createOnEnter',
@@ -72,11 +97,6 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     ui:{
       guestTextBox: '#guest-text-box'
-    },
-
-    onShow:function(){
-      var rsvpView = new Party.RsvpsView({collection:this.collection});
-      rsvpView.render();
     },
 
     createOnEnter: function (e) {
@@ -99,11 +119,19 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     },
 
     show: function(){
-      var collection, view;
-      collection = new Guests();
-      view = new GuestListView({collection : collection});
+      var view = new Layout();
+      view.on('render',this.showChildViews,this);
       this.region.show(view);
-      collection.fetch();
+    },
+
+    showChildViews: function(layout){
+      var guests, collectionView, rsvpView;
+      guests = new Guests()
+      collectionView = new GuestsView({collection: guests});
+      rsvpView = new RsvpsView({collection: guests});
+      layout.guestList.show(collectionView);
+      layout.rsvpStats.show(rsvpView);
+      guests.fetch();
     }
   });
 
