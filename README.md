@@ -22,7 +22,7 @@ The web server also serves up static assets like, the html, javascript and css.
 
 To run, change directory into one of the directories (backbone, or marionette)
 
-Then, install local development dependencies.  From the root Subroute directory, run:
+Then, install local development dependencies.  From the subroute directory, run:
 
 ```
 npm install
