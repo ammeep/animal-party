@@ -2,8 +2,37 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
   "use strict";
   this.startWithParent = false;
 
-  var Controller;
+  var Controller, PartyView, AnimalView, Animal, Party;
 
+  Animal = Backbone.Model.extend({ });
+
+  Party = Backbone.Collection.extend({
+    model: Animal,
+    url: "party"
+  });
+
+  AnimalView = Marionette.ItemView.extend({
+    className: 'col-sm-6 col-md-3',
+    template: '#party-animal-template',
+
+    events: {
+      'click': 'removeAnimal'
+    },
+
+    initialize: function () {
+      this.listenTo(this.model, 'destroy', this.remove);
+    },
+
+    removeAnimal: function () {
+      this.model.destroy();
+    }
+
+  });
+  
+  PartyView = Marionette.CollectionView.extend({
+    itemView: AnimalView,
+    template: '#party-template'
+  });
 
   Controller = Marionette.Controller.extend({
 
@@ -13,8 +42,8 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
 
     show: function(){
       var collection, view;
-      collection = new Guests();
-      view = new GuestListView({collection : collection});
+      collection = new Party();
+      view = new PartyView({collection : collection});
       this.region.show(view);
       collection.fetch();
     }
@@ -25,9 +54,8 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
   };
 
   PartyAnimals.on("before:start", function(options){
-    console.log(options);
     PartyAnimals.controller = new Controller(options);
-    Party.App.vent.trigger("app:started", "PartyAnimals");
+    App.vent.trigger("app:started", "PartyAnimals");
   });
 
 

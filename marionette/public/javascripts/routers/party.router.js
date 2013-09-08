@@ -1,22 +1,22 @@
 /*global Backbone */
-var Party = Party || {};
+Party.Router = (function(App, Backbone){
+  "use strict";
 
-(function (Backbone){
-	'use strict';
+    var Router = Backbone.Router.extend({
 
-	Party.Router = Backbone.Router.extend({
-		routes: {
+     	routes: {
 			'': 'showGuestList',
 			'start-the-party': 'startTheParty'
 		},
+
 		showGuestList: function () {
-			//Party.startSubApp('GuestList',{region:Party.App.main});
+			Party.App.showApp('GuestList',{region:Party.App.main});
 		},
 		startTheParty: function () {
-			var collection = new Party.PartyAnimals();
-			new Party.PartyView({collection:collection});
-			collection.fetch();
+			Party.App.showApp('PartyAnimals',{region:Party.App.main});
 		}
-	});
 
-}(Backbone));
+    });
+  return Router;
+
+})(Party.App, Backbone); 

@@ -88,7 +88,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     },
 
     startTheParty: function(){
-      Party.router.navigate('start-the-party', true);
+      Party.App.Router.navigate('start-the-party', true);
     }
   });
 
@@ -113,7 +113,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
   GuestList.on("before:start", function(options){
     GuestList.controller = new Controller(options);
-    Party.App.vent.trigger("app:started", "guestList");
+    App.vent.trigger("app:started", "guestList");
   });
 
 

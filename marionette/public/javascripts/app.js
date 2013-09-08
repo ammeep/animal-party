@@ -1,5 +1,5 @@
 var Party = Party || {};
-Party.router = new Party.Router();
+
 Party.App = (function(Backbone, Marionette){
   "use strict";
 
@@ -10,13 +10,13 @@ Party.App = (function(Backbone, Marionette){
   });
 
   App.on("initialize:after", function(){
+  	App.Router = new Party.Router();
     if (Backbone.history){
       Backbone.history.start({pushState: true});
     }	
-   
   });
 
-  App.startSubApp = function(appName, args){
+  App.showApp = function(appName, args){
     var currentApp = App.module(appName);
     if (App.currentApp === currentApp){ return; }
 
@@ -26,13 +26,13 @@ Party.App = (function(Backbone, Marionette){
 
     App.currentApp = currentApp;
     currentApp.start(args);
+    currentApp.show();
     return currentApp;
   };
  
 	$(function () {
-		 App.start();
-		 var app = App.startSubApp('GuestList',{region:App.main});
-		 app.show();
+		 App.start();	
+		 //var app = App.showApp('GuestList',{region:App.main});
 	});
   return App;
 })(Backbone, Marionette);
