@@ -39,7 +39,13 @@ PartyApp.module("ViewManager", function(ViewManager, App, Backbone, Marionette, 
   		controller = new Controller();
     	router = new Router({controller: controller});
   	});
-  	
+
+  	ViewManager.on('start',function(){
+      PartyApp.vent.on('start-the-party',function(){
+         router.navigate('start-the-party', true);
+      });
+    });
+
   	ViewManager.on("before:stop",function(){
     	if (router){
       		delete router;

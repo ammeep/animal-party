@@ -107,7 +107,7 @@ PartyApp.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _
     },
 
     startTheParty: function(){
-      PartyApp.Router.navigate('start-the-party', true);
+      PartyApp.vent.trigger("start-the-party");
     }
   });
 
