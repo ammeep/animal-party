@@ -2,7 +2,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
   "use strict";
   this.startWithParent = false;
 
-  var ENTER_KEY, Layout, RsvpsView, GuestsView, GuestView;
+  var ENTER_KEY, Layout, InviteGuestView, RsvpsView, GuestsView, GuestView;
   var Guest, Guests, Controller;
 
   ENTER_KEY = 13;
@@ -78,7 +78,6 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
       var declined = this.collection.declined().length;
       return {confirmed:confirmed,declined:declined};
     }
-
   });
 
   Layout = Marionette.Layout.extend({
@@ -116,22 +115,22 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     initialize: function(options){
       this.region = options.region;
+      this.guests = new Guests();
     },
 
     show: function(){
-      var view = new Layout();
+      var view = new Layout({collection: this.guests});
       view.on('render',this.showChildViews,this);
       this.region.show(view);
+      this.guests.fetch();
     },
 
     showChildViews: function(layout){
-      var guests, collectionView, rsvpView;
-      guests = new Guests()
-      collectionView = new GuestsView({collection: guests});
-      rsvpView = new RsvpsView({collection: guests});
+      var collectionView, rsvpView;  
+      collectionView = new GuestsView({collection: this.guests});
+      rsvpView = new RsvpsView({collection: this.guests});
       layout.guestList.show(collectionView);
       layout.rsvpStats.show(rsvpView);
-      guests.fetch();
     }
   });
 
