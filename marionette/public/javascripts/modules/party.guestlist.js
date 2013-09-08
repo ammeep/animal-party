@@ -45,18 +45,18 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     events: {
       'click .uninvite': 'delete',
-      'click .rsvp-checkbox' : 'toggelRsvp'
+      'click .rsvp-checkbox' : 'toggleRsvp'
     },
 
-    initialize: function () {
-      this.listenTo(this.model, 'destroy', this.remove);
+    modelEvents:{
+      'destroy' : 'remove'
     },
 
     delete: function(){
       this.model.destroy();
     },
 
-    toggelRsvp: function(){
+    toggleRsvp: function(){
       this.model.toggleRsvp();
     }
   });
@@ -69,10 +69,10 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     template:'#rsvp-template',
 
-    initialize: function(){
-      this.collection.on('add',this.render,this);
-      this.collection.on('change',this.render,this);
+    collectionEvents:{
+      'add  change destroy' : 'render',
     },
+
     serializeData: function(){
       var confirmed = this.collection.confirmed().length;
       var declined = this.collection.declined().length;
@@ -107,6 +107,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     },
 
     startTheParty: function(){
+      //App.commands.execute('start-the-party');
       Party.App.Router.navigate('start-the-party', true);
     }
   });
@@ -120,6 +121,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     show: function(){
       var view = new Layout({collection: this.guests});
+      // listen to
       view.on('render',this.showChildViews,this);
       this.region.show(view);
       this.guests.fetch();

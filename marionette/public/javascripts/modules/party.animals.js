@@ -20,8 +20,8 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
       'click': 'removeAnimal'
     },
 
-    initialize: function () {
-      this.listenTo(this.model, 'destroy', this.remove);
+    modelEvents: {
+      'destroy': 'removeAnimal'
     },
 
     removeAnimal: function () {
@@ -53,7 +53,7 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
 
     show: function(){
       var view = new PartyView();
-      view.on('render',this.showChildView,this);
+      this.listenTo(view, 'render', this.showChildView, this);
       this.region.show(view);
     },
 
