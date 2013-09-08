@@ -1,0 +1,45 @@
+/* Party Animal */
+.animal {
+        width:200px;
+        height:200px;       
+        -webkit-animation:bobble 5s ease-in-out infinite;
+        -webkit-transform-origin:center bottom;
+        -webkit-transition:padding .3s, bottom .3s;
+        text-align:center;
+}
+.animal-photo{
+    width:200px;
+    height:200px;     
+}
+  
+@keyframes bobble { 33%{ -webkit-transform:rotate(5deg); } 66%{ -webkit-transform:rotate(-5deg); } }
+@-webkit-keyframes bobble { 33%{ -webkit-transform:rotate(5deg); } 66%{ -webkit-transform:rotate(-5deg); } }
+div:nth-child(5n+1) .animal { -webkit-animation-delay:-3s; }
+div:nth-child(5n+1) .animal { -webkit-animation-delay:-3s; }
+div:nth-child(5n+2) .animal { -webkit-animation-delay:-1s; }
+div:nth-child(5n+3) .animal { -webkit-animation-delay:-4s; }
+div:nth-child(5n+4) .animal { -webkit-animation-delay:-.2.5s; }   
+
+li:hover .animal{ padding:30px 40px; }
+
+.shadow {
+    height:20px;
+    background:rgba(0,0,0,.1);
+    width:60%;
+    border-radius:100%;
+    margin:-15px 0 0 30%;
+    transition:.3s;
+}
+li:hover .shadow { background:rgba(0,0,0,.05); } 
+li:active .shadow { background:rgba(0,0,0,.08); width:70%; }
+.figcaption{
+    text-align: center;
+}  
+
+.guest .details{
+    font-family: "Kavoon", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    font-size: 18px;
+}
+    
