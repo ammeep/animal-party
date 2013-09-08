@@ -1,9 +1,9 @@
-Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionette, $, _){
+PartyApp.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionette, $, _){
   
   "use strict";
   this.startWithParent = false;
 
-  var Controller, PartyView, AnimalView, EmptyView, Animal, Party;
+  var Controller, PartyView, PartyingAnimals,AnimalView, EmptyView, Animal, Party;
 
   Animal = Backbone.Model.extend({ });
 
@@ -20,8 +20,8 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
       'click': 'removeAnimal'
     },
 
-    initialize: function () {
-      this.listenTo(this.model, 'destroy', this.remove);
+    modelEvents: {
+      'destroy': 'removeAnimal'
     },
 
     removeAnimal: function () {
@@ -33,10 +33,16 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
     template:'#empty-party-view'
   });
 
-  PartyView = Marionette.CollectionView.extend({
+  PartyingAnimals = Marionette.CollectionView.extend({
     itemView: AnimalView,
-    template: '#party-template',
     emptyView: EmptyView
+  });
+
+  PartyView = Marionette.Layout.extend({
+    template: '#party-template',
+    regions:{
+      party : '#party-animals'
+    }
   });
 
   Controller = Marionette.Controller.extend({
@@ -46,10 +52,16 @@ Party.App.module("PartyAnimals", function(PartyAnimals, App, Backbone, Marionett
     },
 
     show: function(){
+      var view = new PartyView();
+      this.listenTo(view, 'render', this.showChildView, this);
+      this.region.show(view);
+    },
+
+    showChildView: function(layout){
       var collection, view;
       collection = new Party();
-      view = new PartyView({collection : collection});
-      this.region.show(view);
+      view = new PartyingAnimals({collection : collection});
+      layout.party.show(view);
       collection.fetch();
     }
   });
