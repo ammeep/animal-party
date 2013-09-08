@@ -1,8 +1,9 @@
-Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _){
+PartyApp.module("GuestList", function(GuestList, App, Backbone, Marionette, $, _){
   "use strict";
   this.startWithParent = false;
 
-  var ENTER_KEY,GuestListView, GuestView, Guest, Guests, Controller;
+  var ENTER_KEY, Layout, InviteGuestView, RsvpsView, GuestsView, GuestView;
+  var Guest, Guests, Controller;
 
   ENTER_KEY = 13;
 
@@ -44,26 +45,49 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     events: {
       'click .uninvite': 'delete',
-      'click .rsvp-checkbox' : 'toggelRsvp'
+      'click .rsvp-checkbox' : 'toggleRsvp'
     },
 
-    initialize: function () {
-      this.listenTo(this.model, 'destroy', this.remove);
+    modelEvents:{
+      'destroy' : 'remove'
     },
 
     delete: function(){
       this.model.destroy();
     },
 
-    toggelRsvp: function(){
+    toggleRsvp: function(){
       this.model.toggleRsvp();
     }
   });
   
-  GuestListView = Marionette.CompositeView.extend({
-    itemView: GuestView,
+  GuestsView = Marionette.CollectionView.extend({
+    itemView: GuestView
+  });
+
+  RsvpsView = Marionette.ItemView.extend({
+
+    template:'#rsvp-template',
+
+    collectionEvents:{
+      'add  change destroy' : 'render',
+    },
+
+    serializeData: function(){
+      var confirmed = this.collection.confirmed().length;
+      var declined = this.collection.declined().length;
+      return {confirmed:confirmed,declined:declined};
+    }
+  });
+
+  Layout = Marionette.Layout.extend({
+
     template: '#guest-list-template',
-    itemViewContainer: '#guest-list',
+
+    regions:{
+      guestList: '#guest-list',
+      rsvpStats: '#rspv-counter'
+    },
 
     events: {
       'keypress #guest-text-box': 'createOnEnter',
@@ -72,11 +96,6 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     ui:{
       guestTextBox: '#guest-text-box'
-    },
-
-    onShow:function(){
-      var rsvpView = new Party.RsvpsView({collection:this.collection});
-      rsvpView.render();
     },
 
     createOnEnter: function (e) {
@@ -88,7 +107,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
     },
 
     startTheParty: function(){
-      Party.App.Router.navigate('start-the-party', true);
+      PartyApp.Router.navigate('start-the-party', true);
     }
   });
 
@@ -96,14 +115,22 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     initialize: function(options){
       this.region = options.region;
+      this.guests = new Guests();
     },
 
     show: function(){
-      var collection, view;
-      collection = new Guests();
-      view = new GuestListView({collection : collection});
+      var view = new Layout({collection: this.guests});
+      this.listenTo(view, 'render', this.showChildViews, this);
       this.region.show(view);
-      collection.fetch();
+      this.guests.fetch();
+    },
+
+    showChildViews: function(layout){
+      var collectionView, rsvpView;  
+      collectionView = new GuestsView({collection: this.guests});
+      rsvpView = new RsvpsView({collection: this.guests});
+      layout.guestList.show(collectionView);
+      layout.rsvpStats.show(rsvpView);
     }
   });
 
