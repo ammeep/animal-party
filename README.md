@@ -22,6 +22,10 @@ The web server also serves up static assets like, the html, javascript and css.
 
 To run, change directory into one of the directories (backbone, or marionette)
 
+```
+cd backbone
+```
+
 Then, install local development dependencies.  From the subroute directory, run:
 
 ```
