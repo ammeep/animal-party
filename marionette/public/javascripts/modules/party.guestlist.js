@@ -121,8 +121,7 @@ Party.App.module("GuestList", function(GuestList, App, Backbone, Marionette, $, 
 
     show: function(){
       var view = new Layout({collection: this.guests});
-      // listen to
-      view.on('render',this.showChildViews,this);
+      this.listenTo(view, 'render', this.showChildViews, this);
       this.region.show(view);
       this.guests.fetch();
     },
