@@ -1,7 +1,5 @@
 #Animal Party 
-An Unsuck your Backbone Demo
-
-![alt tag](http://amy.palamounta.in/images/featured/unsuckyourbackbone.jpg)
+An Unsuck your Backbone Demo, useful to compare how the same app would be implemented in both [backbone.js](http://backbonejs.org/) and [marionette.js](marionettejs.com)
 
 ## The facts
  - Animals like to party.
