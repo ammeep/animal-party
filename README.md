@@ -10,7 +10,7 @@ An example app built with backbone.js and then again with marionette.js. Illustr
 
 In this demo you can create an invitation list, to keep track of who you have invited to the party of the year. Once your guests have sent back an RSVP, 
 you can mark them as attending. If you decide your animal friend was mean and you no longer want them at your party
-you can kick them off the list. Once you are ready - you can start the party! 
+you can kick them off the list. Once you are ready, you can start the party! 
 
 ## The pieces of the demo
 
